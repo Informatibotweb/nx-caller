@@ -30,7 +30,7 @@ tutto resta in locale.
 ## Installazione
 
 ```bash
-git clone https://github.com/Nexiquar/nx-caller.git
+git clone https://github.com/Informatibotweb/nx-caller.git
 cd nx-caller
 ./install.sh
 ```

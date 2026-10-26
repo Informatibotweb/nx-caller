@@ -9,5 +9,5 @@ APP_NAME = "Nx Caller"
 DEVELOPER_NAME = "Nexiquar"
 
 # URL del repository — se pubblichi con un altro username (es.
-# Informatibotweb), sostituiscilo qui e in README.md.
-REPO_URL = "https://github.com/Nexiquar/nx-caller"
+# Nexiquar), sostituiscilo qui e in README.md.
+REPO_URL = "https://github.com/Informatibotweb/nx-caller"
