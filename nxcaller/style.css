@@ -1,0 +1,448 @@
+/*
+ * Nx Caller — tema «Liquid Glass».
+ *
+ * Ispirato al Liquid Glass di Apple e all'estensione Liquid Glass per
+ * GNOME (ryohsuke1231): pannelli traslucidi su un fondo «aurora»,
+ * luce di bordo (inset chiaro in alto), ombre morbide e angoli morbidi.
+ *
+ * Se glass-lib <https://github.com/ryohsuke1231/glass-lib> è installata
+ * (./install-glass.sh), barre e pannelli principali diventano in più
+ * vetro rifrangente reale: questo foglio resta comunque la base.
+ *
+ * Usa i colori *nominali* di Adwaita (@window_bg_color, @accent_bg_color,
+ * @view_fg_color, …), per cui tutto si adatta al tema chiaro o scuro.
+ */
+
+/* ============================================================ FONDO AURORA */
+
+window.nx-aurora {
+  background-image: linear-gradient(145deg,
+      alpha(@accent_bg_color, 0.16) 0%,
+      alpha(@view_bg_color, 0.0) 38%,
+      alpha(@success_bg_color, 0.10) 72%,
+      alpha(@warning_bg_color, 0.10) 100%);
+}
+
+/* Le pagine delle impostazioni devono lasciare vedere l'aurora. */
+.nx-aurora preferencespage {
+  background-color: transparent;
+  background-image: none;
+}
+
+/* ============================================================ PANNELLI VETRO */
+
+.nx-glass-panel {
+  background-color: alpha(@view_fg_color, 0.035);
+  background-image: linear-gradient(160deg,
+      alpha(@view_fg_color, 0.085) 0%,
+      alpha(@view_fg_color, 0.025) 48%,
+      alpha(@view_fg_color, 0.06) 100%);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.28),
+              inset 0 0 0 1px alpha(@view_fg_color, 0.05),
+              0 10px 30px alpha(#000000, 0.14);
+}
+
+/* Card flottante di vetro (schermata in-chiamata). */
+.nx-glass-card {
+  padding: 24px 34px;
+}
+
+/* Barre del titolo: niente filo scuro, solo un velo di luce. */
+headerbar {
+  border-bottom: none;
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.08), alpha(#ffffff, 0.0));
+  box-shadow: none;
+}
+
+headerbar:backdrop { background-image: none; }
+
+/* Card delle impostazioni: vetro sottile. */
+.nx-aurora card {
+  background-color: alpha(@view_fg_color, 0.05);
+  background-image: linear-gradient(165deg,
+      alpha(#ffffff, 0.10) 0%, alpha(#ffffff, 0.01) 45%,
+      alpha(#ffffff, 0.035) 100%);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.22),
+              0 6px 20px alpha(#000000, 0.10);
+}
+
+.nx-aurora .navigation-sidebar row {
+  border-radius: 12px;
+}
+
+/* ================================================================ AVATAR */
+
+.nx-avatar {
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.88em;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.30),
+              0 2px 6px alpha(#000000, 0.18);
+}
+
+.nx-avatar-lg { font-size: 1.15em; }
+
+.avatar-blue    { background-color: #3584e4; }
+.avatar-green   { background-color: #2ec27e; }
+.avatar-orange  { background-color: #ff7800; }
+.avatar-purple  { background-color: #9141ac; }
+.avatar-teal    { background-color: #2190a4; }
+.avatar-red     { background-color: #e01b24; }
+.avatar-slate   { background-color: #77767b; }
+.avatar-violet  { background-color: #813d9c; }
+
+/* ====================================================== BOLLE MESSAGGI */
+
+.nx-bubble-row {
+  background: transparent;
+  border-bottom: none;
+  min-height: 0;
+  padding: 1px 0;
+}
+
+.nx-bubble {
+  border-radius: 18px;
+  padding: 8px 13px 6px 13px;
+}
+
+.nx-bubble-in {
+  background-color: alpha(@view_fg_color, 0.075);
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.12), alpha(#ffffff, 0.01) 60%);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.22),
+              0 2px 8px alpha(#000000, 0.10);
+  border-top-left-radius: 6px;
+}
+
+.nx-bubble-out {
+  background-color: @accent_bg_color;
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.22), alpha(#ffffff, 0.0) 62%);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.32),
+              0 3px 10px alpha(#000000, 0.16);
+  color: @accent_fg_color;
+  border-top-right-radius: 6px;
+}
+
+.nx-bubble-text {
+  font-size: 1.02em;
+  color: inherit;
+}
+
+.nx-bubble-sender {
+  font-size: 0.74em;
+  font-weight: 700;
+  opacity: 0.6;
+  margin-bottom: 1px;
+}
+
+.nx-bubble-time {
+  font-size: 0.72em;
+  opacity: 0.62;
+  margin-top: 2px;
+}
+
+/* ================================================= SEPARATORE DI GIORNO */
+
+.nx-day-row {
+  background: transparent;
+  border-bottom: none;
+  min-height: 0;
+  padding: 8px 0 4px 0;
+}
+
+.nx-day-pill {
+  background-color: alpha(@view_fg_color, 0.08);
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.12), alpha(#ffffff, 0.0));
+  border-radius: 999px;
+  padding: 2px 13px;
+  font-size: 0.78em;
+  font-weight: 700;
+  color: @dim_label_color;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.18);
+}
+
+/* =================================================== LISTA CONVERSAZIONI */
+
+.nx-conv-row {
+  background: transparent;
+  border-bottom: none;
+  border-radius: 12px;
+  margin: 1px 6px;
+}
+
+.nx-conv-row:hover { background-color: alpha(#ffffff, 0.07); }
+.nx-conv-row:selected {
+  background-color: alpha(@accent_bg_color, 0.20);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.14);
+}
+
+.nx-name { font-weight: 600; }
+.nx-name-unread { font-weight: 800; }
+.nx-preview-unread { font-weight: 700; }
+
+.nx-badge {
+  background-color: @accent_bg_color;
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.24), alpha(#ffffff, 0.0));
+  color: @accent_fg_color;
+  border-radius: 999px;
+  min-width: 20px;
+  min-height: 20px;
+  padding: 0 6px;
+  font-size: 0.74em;
+  font-weight: 800;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.28),
+              0 2px 6px alpha(#000000, 0.18);
+}
+
+/* ====================================================== REGISTRO CHIAMATE */
+
+.nx-call-row {
+  background: transparent;
+  border-bottom: none;
+  border-radius: 12px;
+  margin: 1px 6px;
+}
+
+.nx-call-row:hover { background-color: alpha(#ffffff, 0.07); }
+.nx-call-row:selected {
+  background-color: alpha(@accent_bg_color, 0.20);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.14);
+}
+
+.nx-missed { color: @destructive_color; font-weight: 600; }
+.nx-dir-missed { color: @destructive_color; }
+.nx-dir-in     { color: @success_color; }
+.nx-dir-out    { color: @dim_label_color; }
+
+/* ============================================================ COMPOSITORE */
+
+.nx-composer {
+  background-color: alpha(@view_fg_color, 0.06);
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.11), alpha(#ffffff, 0.0) 55%);
+  border-radius: 24px;
+  padding: 5px 5px 5px 15px;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.24),
+              inset 0 0 0 1px alpha(@view_fg_color, 0.05),
+              0 6px 18px alpha(#000000, 0.12);
+}
+
+.nx-composer textview { background: transparent; }
+
+.nx-send {
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 999px;
+  background-color: @accent_bg_color;
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.26), alpha(#ffffff, 0.0) 60%);
+  color: @accent_fg_color;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.32),
+              0 3px 10px alpha(#000000, 0.20);
+}
+
+.nx-send:hover { filter: brightness(1.1); }
+.nx-send:disabled { opacity: 0.35; filter: none; }
+
+/* ============================================================ TASTIERINO */
+
+.nx-key {
+  min-width: 70px;
+  min-height: 64px;
+  border-radius: 18px;
+  border: none;
+  background-color: alpha(@view_fg_color, 0.06);
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.13), alpha(#ffffff, 0.01) 65%);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.26),
+              0 3px 10px alpha(#000000, 0.12);
+  transition: background-color 100ms ease, box-shadow 100ms ease,
+              transform 80ms ease;
+}
+
+.nx-key:hover {
+  background-color: alpha(#ffffff, 0.12);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.32),
+              0 5px 14px alpha(#000000, 0.16);
+}
+
+.nx-key:active {
+  background-color: alpha(@accent_bg_color, 0.30);
+  box-shadow: inset 0 2px 4px alpha(#000000, 0.22);
+  transform: scale(0.97);
+}
+
+.nx-key-digit {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.nx-key-letters {
+  font-size: 0.6em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  opacity: 0.55;
+}
+
+.nx-number-entry {
+  font-size: 1.35em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  min-height: 52px;
+  border-radius: 999px;
+  background-color: alpha(@view_fg_color, 0.05);
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.08), alpha(#ffffff, 0.0));
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.18),
+              inset 0 0 0 1px alpha(@view_fg_color, 0.06);
+  padding: 0 20px;
+}
+
+.nx-number-entry:focus {
+  border-color: @accent_color;
+  background-color: alpha(@view_fg_color, 0.08);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.18),
+              0 0 0 2px alpha(@accent_bg_color, 0.35);
+}
+
+.nx-contact-hint {
+  font-size: 1em;
+  font-weight: 600;
+  color: @accent_color;
+  min-height: 1.2em;
+}
+
+/* ========================================================= PULSANTI CHIAMATA */
+
+.nx-call-round {
+  min-width: 70px;
+  min-height: 70px;
+  border-radius: 999px;
+  font-size: 1.5em;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.35),
+              0 8px 22px alpha(#000000, 0.22);
+  transition: filter 110ms ease, transform 80ms ease;
+}
+
+.nx-call-round:hover { filter: brightness(1.08); }
+.nx-call-round:active { transform: scale(0.96); }
+
+.nx-call-answer {
+  background-color: @success_bg_color;
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.26), alpha(#ffffff, 0.0) 60%);
+  color: @success_fg_color;
+}
+
+.nx-call-hangup {
+  background-color: @destructive_bg_color;
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.22), alpha(#ffffff, 0.0) 60%);
+  color: @destructive_fg_color;
+}
+
+.nx-call-small {
+  min-width: 54px;
+  min-height: 54px;
+  border-radius: 999px;
+  border: none;
+  background-color: alpha(@view_fg_color, 0.07);
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.12), alpha(#ffffff, 0.01) 65%);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.24),
+              0 4px 12px alpha(#000000, 0.14);
+  transition: background-color 110ms ease, filter 110ms ease;
+}
+
+.nx-call-small:hover {
+  background-color: alpha(#ffffff, 0.13);
+  filter: brightness(1.05);
+}
+
+.nx-call-small.active {
+  background-color: @accent_bg_color;
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.24), alpha(#ffffff, 0.0));
+  color: @accent_fg_color;
+}
+
+/* ============================================================= IN-CHIAMATA */
+
+.nx-call-state {
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: @dim_label_color;
+}
+
+.nx-call-number { font-size: 1.7em; font-weight: 700; }
+.nx-call-name   { font-size: 1.1em; font-weight: 500; color: @dim_label_color; }
+
+.nx-call-timer {
+  font-size: 1em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: @dim_label_color;
+}
+
+.nx-dtmf-label {
+  font-size: 1.4em;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2em;
+  min-height: 1.3em;
+  color: @accent_color;
+}
+
+/* ================================================================ STATO */
+
+.nx-status {
+  border-radius: 999px;
+  padding: 3px 11px 3px 9px;
+  background-color: alpha(@view_fg_color, 0.06);
+  background-image: linear-gradient(180deg,
+      alpha(#ffffff, 0.10), alpha(#ffffff, 0.0));
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.18);
+}
+
+.nx-status:hover { background-color: alpha(#ffffff, 0.11); }
+
+.status-dot {
+  min-width: 9px;
+  min-height: 9px;
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.30);
+}
+
+.status-dot.ok   { background-color: @success_bg_color; }
+.status-dot.warn { background-color: @warning_bg_color; }
+.status-dot.err  { background-color: @destructive_bg_color; }
+.status-dot.off  { background-color: @dim_label_color; }
+
+/* ================================================================= VARIE */
+
+.nx-section-title { font-weight: 700; }
+.nx-hint { color: @dim_label_color; font-size: 0.9em; }
+
+/* lista dei messaggi: niente divisori di riga, sfondo trasparente */
+.nx-thread-list { background: transparent; }
+.nx-thread-list row { background: transparent; border-bottom: none; }
+
+/* Toast leggermente vetrati, come il resto dell'interfaccia. */
+.nx-aurora toast {
+  background-color: alpha(@view_fg_color, 0.92);
+  box-shadow: inset 0 1px 0 alpha(#ffffff, 0.20),
+              0 8px 24px alpha(#000000, 0.28);
+}
+
+/* Risparmio di animazioni (accessibilità). */
+@media (prefers-reduced-motion: reduce) {
+  .nx-key, .nx-call-round, .nx-call-small { transition: none; }
+}

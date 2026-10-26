@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Nx Caller
+Name[it_IT]=Nx Caller
+GenericName=Phone on desktop
+GenericName[it_IT]=Telefono dal desktop
+Comment=Call, SMS and screen mirroring through KDE Connect and ADB
+Comment[it_IT]=Chiama, scrivi SMS e vedi lo schermo del telefono dal PC
+Exec=nx-caller
+Icon=org.nxcaller.NxCaller
+Terminal=false
+Categories=Network;Telephony;GTK;GNOME;
+Keywords=phone;sms;call;kdeconnect;adb;scrcpy;bluetooth;hfp;telefono;chiamate;nexiquar;
+StartupNotify=true
+StartupWMClass=nx-caller
