@@ -8,6 +8,6 @@ APP_ID = "org.nxcaller.NxCaller"
 APP_NAME = "Nx Caller"
 DEVELOPER_NAME = "Nexiquar"
 
-# Sostituisci <USERNAME> con il tuo username GitHub quando crei il repo
-# (vedi README.md, sezione «Pubblicazione su GitHub»).
-REPO_URL = "https://github.com/<USERNAME>/nx-caller"
+# URL del repository — se pubblichi con un altro username (es.
+# Informatibotweb), sostituiscilo qui e in README.md.
+REPO_URL = "https://github.com/Nexiquar/nx-caller"
